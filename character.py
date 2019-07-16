@@ -1,3 +1,6 @@
+'''
+this is just a test
+'''
 class Character:
 	def __init__(self, name, location, uni):
 		self.location = location
