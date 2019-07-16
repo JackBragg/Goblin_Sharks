@@ -6,7 +6,7 @@ class Coord():
 		self.has = item
 
 	def __str__(self):
-		return str(self.coord)
+		return str(self.has)
 
 	def __repr__(self):
 		return str(self.has)
@@ -23,8 +23,18 @@ class Room():
 		
 		# Fill the room with coordinates that have no item
 		for i in range(height):
-			for j in range(width):
-				self.coord_list[i][j] = 'w'
+			temp = []
+			for j in range(width):	
+				if (i == 0) or (i == width-1):
+					inside = Coord((i, j), "☐")
+					temp.append(inside)
+				elif (j == 0) or (j == height-1):
+					inside = Coord((i, j), "☐")
+					temp.append(inside)
+				else:
+					temp.append(' ')	
+				
+			self.coord_list.append(temp)
 
 		# Make a single sample box at 1 down, 5 right
 		# single_box = item.Item('box', '☐')
@@ -34,6 +44,6 @@ class Room():
 		temp_var = ''
 		for i in range(self.height):
 			for j in range(self.width):
-				temp_var += self.coord_list[i][j]
+				temp_var += str(self.coord_list[i][j]) + ' '
 			temp_var += '\n'
 		return temp_var
