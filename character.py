@@ -2,7 +2,7 @@
 this is just a test
 '''
 class Character:
-	def __init__(self, name, location, uni):
+	def __init__(self, name, uni, location=(8, 5)):
 		self.location = location
 		self.name = name
 		self.uni = uni # unicode character representation
@@ -15,5 +15,5 @@ class Character:
 
 class Player(Character):
 	def __init__(self):
-		super().__init__('Hero', (9, 5), '👵')
+		super().__init__('Hero', '@', (8,5))
 		
