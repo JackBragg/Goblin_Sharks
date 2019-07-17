@@ -1,8 +1,11 @@
 import room, item, character
-
+from random import randint
 hero_player = character.Player()
 main_room = room.Room([hero_player], 10, 10)
 main_room.spawn(hero_player, hero_player.location)
+#spawns the key in a random space
+main_room.spawn(item.Item('Key', 'k'), (randint(1,8), randint(1,8)))
+
 
 keep_playing = True
 while keep_playing:
