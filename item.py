@@ -1,7 +1,8 @@
-class Item:
+class Item():
 	def __init__(self, name, uni):
 		self.name = name
 		self.uni = uni # unicode character representation
+
 
 	def __str__(self):
 		return self.name

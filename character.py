@@ -1,7 +1,7 @@
 import room
 
 class Character:
-	def __init__(self, name, location, uni):
+	def __init__(self, name, uni, location=(8, 5)):
 		self.location = location
 		self.name = name
 		self.uni = uni # unicode character representation

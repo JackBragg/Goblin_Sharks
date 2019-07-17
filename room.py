@@ -1,4 +1,4 @@
-import item
+from item import Item
 
 class Coord():
 	def __init__(self, in_coord, item=None):
@@ -25,14 +25,16 @@ class Room():
 		for i in range(height):
 			temp = []
 			for j in range(width):	
+				item = Item('WALL', "☐")
 				if (i == 0) or (i == width-1):
-					inside = Coord((i, j), "☐")
+					inside = Coord((i, j), item)
 					temp.append(inside)
 				elif (j == 0) or (j == height-1):
-					inside = Coord((i, j), "☐")
+					inside = Coord((i, j), item)
 					temp.append(inside)
 				else:
-					temp.append(' ')	
+					inside = Coord((i,j), Item('Blank', ' '))
+					temp.append(inside)
 				
 			self.coord_list.append(temp)
 
@@ -44,6 +46,12 @@ class Room():
 		temp_var = ''
 		for i in range(self.height):
 			for j in range(self.width):
-				temp_var += str(self.coord_list[i][j]) + ' '
+				temp_var += str(self.coord_list[i][j].has.uni) + ' '
 			temp_var += '\n'
 		return temp_var
+
+	def spawn(self, item, position=(0, 0)):
+		i, j = position
+		# TODO Change .has to .has.name
+		if self.coord_list[i][j].has.name != "WALL": 
+			self.coord_list[i][j].has = item
