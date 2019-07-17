@@ -11,6 +11,15 @@ while keep_playing:
 	if inkey[0] in ['w', 'W']:
 		new_loc = (hero_player.location[0] - 1, hero_player.location[1])
 		hero_player.location = new_loc
+	elif inkey[0]  in ['a', 'A']:
+		new_loc = (hero_player.location[0], hero_player.location[1] - 1)
+		hero_player.location = new_loc
+	elif inkey[0] in ['s', 'S']:
+		new_loc = (hero_player.location[0] + 1, hero_player.location[1])
+		hero_player.location = new_loc
+	elif inkey[0] in ['d', 'D']:
+		new_loc = (hero_player.location[0], hero_player.location[1] + 1)
+		hero_player.location = new_loc
 	elif inkey[0] in ['q', 'Q']:
 		keep_playing = False
 	main_room.spawn(hero_player, hero_player.location)
