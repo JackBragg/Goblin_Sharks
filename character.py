@@ -1,6 +1,5 @@
-'''
-this is just a test
-'''
+import room
+
 class Character:
 	def __init__(self, name, location, uni):
 		self.location = location
@@ -13,7 +12,8 @@ class Character:
 	def __repr__(self):
 		return self.uni
 
+
 class Player(Character):
 	def __init__(self):
-		super().__init__('Hero', (9, 5), '👵')
+		super().__init__('Hero', (8, 1), '🦈')
 		
