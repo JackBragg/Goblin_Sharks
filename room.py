@@ -53,5 +53,12 @@ class Room():
 	def spawn(self, item, position=(0, 0)):
 		i, j = position
 		# TODO Change .has to .has.name
-		if self.coord_list[i][j].has.name != "WALL": 
+		if self.coord_list[i][j].has.name not in ['WALL', 'BOSS', 'Hero', 'Key']: 
 			self.coord_list[i][j].has = item
+			return True
+		return False
+
+	def set_blank(self, pos):
+		i, j = pos
+		if self.coord_list[i][j].has.name is not 'WALL':
+			self.coord_list[i][j].has = Item('Blank', ' ')
