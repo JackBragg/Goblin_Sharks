@@ -1,10 +1,12 @@
 from item import Item
 class Character:
-	def __init__(self, name, uni, location=(8, 5)):
+	def __init__(self, name, uni, location):
 		self.location = location
 		self.name = name
 		self.uni = uni # unicode character representation
+		self.health = 100
 		self.keyring = []
+		self.atk_dmg = 10
 
 	def __str__(self):
 		return self.name
@@ -25,5 +27,18 @@ class Player(Character):
 	def __init__(self):
 		super().__init__('Hero', '@', (8,5))
 
+class Boss(Character):
+	def __init__(self):
+		super().__init__('Boss', 'B', (2,5))
+		self.boss_area = [(self.location[0]-1, self.location[1]),
+						  (self.location[0]+1, self.location[1]),
+						  (self.location[0], self.location[1]-1),
+						  (self.location[0], self.location[1]+1)]
+
+	def check(self, player):
+		if player.location in self.boss_area:
+			return True
+		return False
+			
 
 		
