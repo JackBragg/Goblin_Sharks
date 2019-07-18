@@ -13,8 +13,7 @@ class Character:
 		return self.uni
 
 	def add_key(self, item):
-		if type(item) is type(Item):
-			self.keyring.append(item)
+		self.keyring.append(item)
 
 	def view_keyring(self):
 		msg = 'You have these keys:'

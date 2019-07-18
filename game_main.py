@@ -14,16 +14,12 @@ while keep_playing:
 	cur_loc = hero_player.location
 	if inkey[0] in ['w', 'W']:
 		new_loc = (hero_player.location[0] - 1, hero_player.location[1])
-		hero_player.location = new_loc
 	elif inkey[0]  in ['a', 'A']:
 		new_loc = (hero_player.location[0], hero_player.location[1] - 1)
-		hero_player.location = new_loc
 	elif inkey[0] in ['s', 'S']:
 		new_loc = (hero_player.location[0] + 1, hero_player.location[1])
-		hero_player.location = new_loc
 	elif inkey[0] in ['d', 'D']:
 		new_loc = (hero_player.location[0], hero_player.location[1] + 1)
-		hero_player.location = new_loc
 	elif inkey[0].lower() == 'k':
 		print(hero_player.view_keyring())
 	elif inkey[0] in ['q', 'Q']:
@@ -31,9 +27,11 @@ while keep_playing:
 	i, j = new_loc
 	#coord object
 	next_loc = main_room.coord_list[i][j]
-	main_room.spawn(hero_player, hero_player.location)
-	main_room.set_blank(cur_loc)
+	print(next_loc.has.name, next_loc.has)
 	if next_loc.has.name == 'Key':
 		hero_player.add_key(next_loc.has)
 		print('You picked up a Key!')
 		main_room.set_blank(new_loc)
+	hero_player.location = new_loc
+	main_room.spawn(hero_player, hero_player.location)
+	main_room.set_blank(cur_loc)
