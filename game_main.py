@@ -6,8 +6,11 @@ main_room.spawn(hero_player, hero_player.location)
 #spawns the key in a random space
 main_room.spawn(item.Item('Key', 'k'), (randint(1,8), randint(1,8)))
 #this is a test
+boss = character.Character('Boss', 'B', (1,5))
+main_room.spawn(boss, boss.location)
 
 keep_playing = True
+new_loc = hero_player.location
 while keep_playing:
 	print(main_room)
 	inkey = input("Next command: ")
@@ -27,11 +30,13 @@ while keep_playing:
 	i, j = new_loc
 	#coord object
 	next_loc = main_room.coord_list[i][j]
-	print(next_loc.has.name, next_loc.has)
 	if next_loc.has.name == 'Key':
 		hero_player.add_key(next_loc.has)
 		print('You picked up a Key!')
 		main_room.set_blank(new_loc)
 	hero_player.location = new_loc
-	main_room.spawn(hero_player, hero_player.location)
-	main_room.set_blank(cur_loc)
+	if main_room.spawn(hero_player, hero_player.location):
+		main_room.set_blank(cur_loc)
+	else:
+		hero_player.location = cur_loc
+		print('You can\'t go that way')
