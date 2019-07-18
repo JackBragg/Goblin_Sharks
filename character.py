@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 from item import Item
+=======
+import room
+
+>>>>>>> 44d9167f42f1f9368ff360edb4c5e61e355501d0
 class Character:
 	def __init__(self, name, uni, location):
 		self.location = location
@@ -15,6 +20,7 @@ class Character:
 
 class Player(Character):
 	def __init__(self):
+<<<<<<< HEAD
 		super().__init__('Hero', '@', (8,5))
 		self.keyring = []
 
@@ -44,4 +50,7 @@ class Boss(Character):
 		return False
 			
 
+=======
+		super().__init__('Hero', (8, 1), '🦈')
+>>>>>>> 44d9167f42f1f9368ff360edb4c5e61e355501d0
 		
