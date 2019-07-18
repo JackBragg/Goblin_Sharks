@@ -55,3 +55,8 @@ class Room():
 		# TODO Change .has to .has.name
 		if self.coord_list[i][j].has.name != "WALL": 
 			self.coord_list[i][j].has = item
+
+	def set_blank(self, pos):
+		i, j = pos
+		if self.coord_list[i][j].has.name is not 'WALL':
+			self.coord_list[i][j].has = Item('Blank', ' ')
