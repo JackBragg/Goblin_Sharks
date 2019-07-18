@@ -2,12 +2,6 @@ import room, item, character
 from random import randint
 from Rock_Paper_Scissors import game as RPS
 
-
-
-
-
-
-
 if __name__ == '__main__':
 	hero_player = character.Player()
 	main_room = room.Room([hero_player], 10, 10)
@@ -15,20 +9,26 @@ if __name__ == '__main__':
 	#this is a test
 	boss = character.Boss()
 	main_room.spawn(boss, boss.location)
+	main_room.add_door()
+	new_loc = hero_player.location
+
 
 	keep_playing = True
-	new_loc = hero_player.location
 	while keep_playing:
 		if boss.check(hero_player):
 			print(f'Hello {hero_player.name}, you must defeat me in a supreme contest of skill...ROCK PAPER SCISSORS!')
 			if RPS():
+				main_room.set_blank(boss.location)
+				boss.location = (-1,-1)
+				boss.set_area()
 				print('AHHHHHH you defeted me!!!')
 				print(f'as the boss was leaving, they spitefully threw the key back into the room')
 				main_room.spawn(item.Item('Key', 'k'), (randint(1,8), randint(1,8)))
-				main_room.set_blank(boss.location)
 			else:
 				print('AHAHAHAHAHAHAHA! I WON!\n(you take 10 damage)')
 				hero_player.health -= 10
+		if main_room.door_check(hero_player):
+			print('You opened the door, goodbye')
 
 		print(main_room)
 		inkey = input("Next command: ")
