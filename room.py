@@ -21,6 +21,7 @@ class Room():
 		self.coord_list = []
 		self.width = width
 		self.height = height
+		self.exit = False
 		
 		# Fill the room with coordinates that have no item
 		for i in range(height):
@@ -83,7 +84,9 @@ class Room():
 		if player.location in self.door_area:
 			if player.keyring[0].name == 'Key':
 				i, j = self.door.location
-				self.coord_list[i][j].has = Item('Blank', ' ')
+				self.exit = Item('EXIT', ' ')
+				self.exit.location = (i, j)
+				self.coord_list[i][j].has = self.exit
 				self.door.location = (-1,-1)
 				self.set_area()
 				player.keyring[0] = None
