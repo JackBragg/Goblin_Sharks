@@ -1,7 +1,4 @@
-
 from item import Item
-import room
-
 class Character:
 	def __init__(self, name, uni, location):
 		self.location = location
@@ -18,7 +15,7 @@ class Character:
 
 class Player(Character):
 	def __init__(self):
-		super().__init__('Hero', (8, 1), '🦈')
+		super().__init__('Hero', '@', (8,5))
 		self.keyring = []
 
 	def add_key(self, item):
