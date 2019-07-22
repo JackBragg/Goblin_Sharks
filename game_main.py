@@ -13,7 +13,7 @@ def start_card():
 def end_card():
 	msg = ''
 	msg += '*'*60 + '\n' + '*'*60 + '\n'
-	msg += 'Thank you for playing!\n\tCaleb\n\tJack\n\tScott\n'
+	msg += '\t\tThank you for playing!\n\t\t\tCaleb\n\t\t\tJack\n\t\t\tScott\n'
 	msg += '*'*60 + '\n' + '*'*60 + '\n'
 	print(msg)
 
