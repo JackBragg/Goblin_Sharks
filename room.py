@@ -55,7 +55,7 @@ class Room():
 	def spawn(self, item, position=(0, 0)):
 		i, j = position
 		# TODO Change .has to .has.name
-		if self.coord_list[i][j].has.name not in ['WALL', 'BOSS', 'Hero', 'Key']: 
+		if self.coord_list[i][j].has.name not in ['WALL', 'BOSS', 'Door', 'Hero', 'Key']: 
 			self.coord_list[i][j].has = item
 			return True
 		return False
@@ -82,14 +82,14 @@ class Room():
 
 	def door_check(self, player):
 		if player.location in self.door_area:
-			if player.keyring[0].name == 'Key':
+			if player.keyring.name == 'Key':
 				i, j = self.door.location
 				self.exit = Item('EXIT', ' ')
 				self.exit.location = (i, j)
 				self.coord_list[i][j].has = self.exit
 				self.door.location = (-1,-1)
 				self.set_area()
-				player.keyring[0] = None
+				player.keyring = None
 				return True
 		return False
 
