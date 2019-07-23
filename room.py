@@ -1,4 +1,5 @@
 from item import Item
+from random import randint, choice
 
 class Coord():
 	def __init__(self, in_coord, item=None):
@@ -20,6 +21,7 @@ class Room():
 		self.coord_list = []
 		self.width = width
 		self.height = height
+		self.exit = False
 		
 		# Fill the room with coordinates that have no item
 		for i in range(height):
@@ -62,3 +64,38 @@ class Room():
 		i, j = pos
 		if self.coord_list[i][j].has.name is not 'WALL':
 			self.coord_list[i][j].has = Item('Blank', ' ')
+
+	def add_door(self):
+		choices = [(0, randint(1,self.width-2)), 
+				   (self.height-1, randint(1, self.width-2)),
+				   (randint(1, self.height-2), 0),
+				   (randint(1, self.height-2), self.width-1)
+				  ]
+		i, j = choice(choices)
+		self.door = Item('Door', 'D')
+		self.door.location = (i, j)
+		self.coord_list[i][j].has = self.door
+		self.door_area = [(self.door.location[0]-1, self.door.location[1]),
+				  (self.door.location[0]+1, self.door.location[1]),
+				  (self.door.location[0], self.door.location[1]-1),
+				  (self.door.location[0], self.door.location[1]+1)]
+
+	def door_check(self, player):
+		if player.location in self.door_area:
+			if player.keyring[0].name == 'Key':
+				i, j = self.door.location
+				self.exit = Item('EXIT', ' ')
+				self.exit.location = (i, j)
+				self.coord_list[i][j].has = self.exit
+				self.door.location = (-1,-1)
+				self.set_area()
+				player.keyring[0] = None
+				return True
+		return False
+
+
+	def set_area(self):
+		self.door_area = [(self.door.location[0]-1, self.door.location[1]),
+				  (self.door.location[0]+1, self.door.location[1]),
+				  (self.door.location[0], self.door.location[1]-1),
+				  (self.door.location[0], self.door.location[1]+1)]
