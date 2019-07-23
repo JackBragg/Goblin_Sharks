@@ -33,11 +33,11 @@ class Player(Character):
 class Player(Character):
 	def __init__(self):
 		super().__init__('Hero', '@', (8,5))
-		self.keyring = []
+		self.keyring = Item('NotKey', ' ')
 
 >>>>>>> master
 	def add_key(self, item):
-		self.keyring.append(item)
+		self.keyring = item
 
 	def view_keyring(self):
 		msg = 'You have these keys:'
