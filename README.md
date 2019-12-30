@@ -1,1 +1,1 @@
-# Code to start a game project
+Simple text art dungeon game made in a three man team!
